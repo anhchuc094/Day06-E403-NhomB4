@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <title>ZaloPay AI Spending</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="device">
+    <span class="side-button volume-up"></span>
+    <span class="side-button volume-down"></span>
+    <span class="side-button power"></span>
+    <div class="dynamic-island"><span></span><i></i></div>
+    <main class="phone-shell">
+    <header class="hero">
+      <div class="status"><strong>09:45</strong><span>●●● 5G ▰</span></div>
+      <div class="hero-copy">
+        <span class="eyebrow">ZaloPay AI</span>
+        <h1>Tiền của bạn<br>đã đi đâu?</h1>
+        <p>AI phân loại giao dịch và chỉ ra điều đáng chú ý.</p>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="profile-row">
+        <div class="avatar">Z</div>
+        <div><small>Xin chào</small><strong>Điểm tín dụng</strong></div>
+        <button class="icon-button"><i class="fa-solid fa-magnifying-glass" style="color: black; font-size: 18px"></i></button>
+      </div>
+
+      <section class="balance-card">
+        <div>
+          <span>Chi tiêu tháng 6</span>
+          <strong id="totalSpent">--</strong>
+        </div>
+        <div class="balance-art">AI</div>
+        <button id="classifyButton">✦ Phân loại bằng AI</button>
+      </section>
+
+      <section id="agentPanel" class="agent-panel hidden">
+        <div class="agent-head">
+          <span class="agent-orb">✦</span>
+          <div><strong>Spending Agent</strong><small id="agentStatus">Đang chuẩn bị dữ liệu...</small></div>
+          <span id="agentPercent">0%</span>
+        </div>
+        <div class="progress"><span id="progressBar"></span></div>
+      </section>
+
+      <section id="dashboard" class="hidden">
+        <div class="section-title"><h2>Tổng quan AI</h2><span id="reviewCount"></span></div>
+        <div class="stats">
+          <article><span>Nhóm chi cao nhất</span><strong id="topCategory">--</strong><small id="topAmount">--</small></article>
+          <article><span>Độ tin cậy TB</span><strong id="avgConfidence">--</strong><small>AI confidence</small></article>
+        </div>
+        <article class="insight-card">
+          <span class="agent-orb-2">✦</span>
+          <div><strong>AI Insight</strong><p id="insightText"></p></div>
+        </article>
+        <div id="categoryChips" class="category-chips"></div>
+      </section>
+
+      <section id="chatSection" class="chat-section hidden">
+        <div class="section-title">
+          <h2>Trợ lý giao dịch</h2>
+          <span class="chat-status">OpenRouter AI</span>
+        </div>
+        <div class="chat-card">
+          <div id="chatMessages" class="chat-messages">
+            <div class="chat-message assistant">
+              Tôi có thể tìm giao dịch, tìm khoản mơ hồ và đề xuất sửa danh mục. Mọi chỉnh sửa đều cần bạn xác nhận.
+            </div>
+          </div>
+          <div class="chat-suggestions">
+            <button data-prompt="Tìm những giao dịch mơ hồ cần xác nhận">Tìm giao dịch mơ hồ</button>
+            <button data-prompt="Tìm các giao dịch có giá trị lớn nhất">Tìm khoản chi lớn</button>
+            <button data-prompt="Tìm giao dịch liên quan đến học phí và đề xuất danh mục phù hợp">Kiểm tra học phí</button>
+          </div>
+          <form id="chatForm" class="chat-form">
+            <input id="chatInput" maxlength="500" placeholder="Ví dụ: Tìm giao dịch Highlands..." autocomplete="off">
+            <button id="chatSendButton" type="submit" aria-label="Gửi câu hỏi"><i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </section>
+
+      <section class="transactions-section">
+        <div class="section-title"><h2>Lịch sử giao dịch</h2><button id="filterButton">Tất cả</button></div>
+        <div id="transactions" class="transactions"></div>
+      </section>
+    </section>
+
+    <nav>
+      <button><i class="fa-solid fa-house text-secondary"></i><span>Trang chủ</span></button>
+      <button class="active"><i class="bi bi-graph-up text-secondary"></i><span>AI chi tiêu</span></button>
+      <button class="qr"><i class="fa-solid fa-expand"></i></button>
+      <button><i class="bi bi-box-seam-fill text-secondary"></i><span>Sản phẩm</span></button>
+      <button><i class="bi bi-person-circle text-secondary fs-2"></i><span>Tài khoản</span></button>
+    </nav>
+    <div id="toast" class="toast"></div>
+    </main>
+  </div>
+  <script src="spending-agent.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
