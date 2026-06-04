@@ -1,103 +1,39 @@
 # Batch 02 · Day 06 — AI Product Hackathon
 
-> SPEC → Prototype → Demo. Hôm nay không có bài giảng mới — hôm nay chứng minh: SPEC là giả thuyết, prototype là bằng chứng, demo là thuyết phục.
 
 ---
 
-## Cách nộp bài
+## Sản phẩm của nhóm
 
-**Đại diện nhóm tạo MỘT repo nhóm**, đặt tên:
+**Tên sản phẩm:** ZaloPay AI Spending Classifier
 
-```
-Day06-Lop-NhomXX
-```
+Prototype dùng AI để phân loại 30 giao dịch ví điện tử, hiển thị dashboard tổng hợp, đánh dấu giao dịch cần xác nhận và cho phép người dùng sửa category khi AI sai.
 
-Ví dụ: `Day06-C401-Nhom03`
+### Cách chạy
 
-- **README của repo nhóm phải liệt kê đủ thành viên** — mỗi người gồm **mã học viên + họ và tên**.
-- Đại diện nhóm nộp **link repo** lên LMS. **Hạn nộp: 23:59 ngày 04/06/2026.**
-- Mỗi thành viên cần **ít nhất một commit thực chất** trong repo (không commit = mất điểm cá nhân).
-
-### Cấu trúc repo nhóm
-
-```
-Day06-Lop-NhomXX/
-├── README.md        ← Danh sách thành viên (mã HV + họ tên) + mô tả ngắn sản phẩm
-├── spec/            ← SPEC sản phẩm (xem hướng dẫn trong spec/)
-└── codebase/        ← Toàn bộ code prototype (xem hướng dẫn trong codebase/)
+```powershell
+python codebase/server.py
 ```
 
----
+Sau đó mở `http://localhost:8000` và bấm **Phân loại bằng AI**.
 
-## Lịch ngày 06 — 04/06/2026
+## Thành viên và phân công commit
 
-| Giờ | Mốc | Cần đạt |
-|-----|-----|---------|
-| Sáng | Build | Bắt đầu từ SPEC nhẹ đã làm ở Day 5 |
-| **11:00** | Checkpoint 1 | **Show được ít nhất mockup/prototype chạy được** |
-| **13:00** | Checkpoint 2 | **Lắp được AI vào ít nhất 1 flow** |
-| **15:30** | Checkpoint 3 | **Chuẩn bị xong tài liệu demo + slide** |
-| **16:00** | Demo round | Trình bày trong zone, 10 phút/nhóm |
+> Bổ sung mã học viên chính xác trước khi nộp bài. Mỗi thành viên cần tự kiểm tra, cải thiện và hiểu phần được giao trước khi commit; không chỉ commit lại file do người khác làm.
 
----
+| Thành viên | Mã học viên | Trách nhiệm chính | File nên phụ trách và commit |
+|---|---|---|---|
+| Nguyễn Thành Lam | _Bổ sung mã HV_ | Dữ liệu demo, evidence và các case AI sai/không chắc | `codebase/data/transactions.json`, `codebase/data/mock-classifications.json`, `codebase/data/corrections.json`, `codebase/data/README.md` |
+| Trần Văn Quang | 2A202600798 | Giao diện frontend, dashboard, danh sách giao dịch và correction UX | `codebase/index.html`, `codebase/styles.css`, `codebase/app.js` |
+| Nguyễn Trọng Tấn | 2A202600901 | Product SPEC, AI Product Canvas, failure modes và demo story | `spec/spec.md`, `AI-flows-and-team-plan.md` |
+| Nguyễn Anh Chức | 2A202600617 | Backend gọi AI, validation, xử lý lỗi API, test và hướng dẫn chạy | `codebase/server.py`, `codebase/spending-agent.js`, `codebase/tests/test_server.py`, `codebase/README.md`, `codebase/.env.example` |
 
-## Tracks
+### Việc cụ thể trước khi mỗi người commit
 
-Mỗi nhóm chọn một lĩnh vực, lấy một app thật trong đó để soi và cải tiến:
+| Thành viên | Việc cần kiểm tra hoặc hoàn thiện |
+|---|---|
+| Nguyễn Thành Lam | Kiểm tra đủ 30 giao dịch; bảo đảm có happy case, low-confidence case và case VINUNI bị phân loại sai; giải thích được vì sao dữ liệu này dùng để test. |
+| Trần Văn Quang | Kiểm tra giao diện trước/sau phân loại; nút lọc không làm rỗng hoặc lỗi layout; sửa category phải cập nhật số liệu dashboard. |
+| Nguyễn Trọng Tấn | Rà lại SPEC khớp với prototype; chuẩn bị câu trả lời về augment, failure mode chính, bốn đường trải nghiệm và giới hạn correction hiện tại. |
+| Nguyễn Anh Chức | Kiểm tra OpenRouter call, schema validation, xử lý lỗi API và unit test; bảo đảm README hướng dẫn chạy đúng. |
 
-| Track | App thật gợi ý |
-|-------|----------------|
-| **Learning OS** (Vin AI Thực Chiến) | LMS khóa học, Discord lớp |
-| **Travel & Hospitality** | Vinpearl, Sun World / SunGroup |
-| **Food & Local Delivery** | ShopeeFood, GrabFood, BeFood, Xanh SM Ngon |
-| **Personal Finance** | MoMo, ZaloPay, app ngân hàng |
-| **Healthcare** | Vinmec, Long Châu, Pharmacity |
-
-> Các nhóm **cùng track** ngồi **cùng một zone** khi demo.
-
----
-
-## Kỳ vọng mỗi demo
-
-1. **Product Canvas** — giới thiệu ý tưởng và nỗi đau (painpoint) của người dùng.
-2. **Demo full luồng end-to-end** — show cả happy case lẫn error case.
-3. **AI chạy thật trong ít nhất 1 flow** — không chỉ mockup tĩnh.
-
----
-
-## Demo round (16:00)
-
-- Mỗi nhóm **10 phút** (≈ 5 phút trình bày + 5 phút Q&A).
-- Các nhóm khác **phản biện, đặt câu hỏi**.
-- **Đánh giá chéo qua form**: thành viên các nhóm khác chấm điểm.
-- **Tổng kết**: nhóm điểm cao nhất mỗi zone được **bonus**; còn thời gian thì các nhóm điểm cao **present trước cả lớp**; giảng viên đánh giá.
-
-Chi tiết luật chơi + cách chấm: [`hackathon-rules.md`](hackathon-rules.md)
-
----
-
-## Chấm điểm (Day 5 + Day 6 = 100 điểm)
-
-| Hạng mục | Điểm |
-|----------|------|
-| SPEC | 25 |
-| Prototype | 15 |
-| Demo Day | 25 |
-| Bài tập UX (Day 5) | 10 |
-| Phản ánh cá nhân (reflection) | 25 |
-
-**Điều kiện chặn:** prototype không có lời gọi AI thật → giới hạn 4/10 · không có commit → mất điểm cá nhân · không giải thích được phần mình khi bị hỏi → 0 điểm demo cá nhân.
-
----
-
-## Tài liệu trong repo này
-
-| Folder / file | Nội dung |
-|---------------|----------|
-| [`hackathon-rules.md`](hackathon-rules.md) | Luật chơi, lịch, demo round, cách chấm |
-| [`spec/`](spec/) | Hướng dẫn viết SPEC sản phẩm (nối tiếp SPEC nhẹ Day 5) |
-| [`codebase/`](codebase/) | Yêu cầu nộp code prototype |
-
----
-
-*Batch 02 · Ngày 06 — VinUni A20 · AI Thực Chiến · 2026*
